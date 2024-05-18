@@ -1,11 +1,12 @@
 package metodos;
 
-import java.util.Scanner;
+import javax.swing.*;
 
 /**
  *
  * @author arojas
  */
+
 public class Bienvenida {
 
     private final Usuario usuario;
@@ -15,20 +16,11 @@ public class Bienvenida {
     }
 
     public void iniciarInterfaz() {
-        Scanner scanner = new Scanner(System.in);
         int opcion;
 
         do {
-            limpiarPantalla(); // Limpiar la pantalla antes de mostrar el menú
-            System.out.println("Bienvenido, ¿qué acción desea realizar?");
-            System.out.println("1. Mostrar lista de usuarios");
-            System.out.println("2. Registrar un nuevo usuario");
-            System.out.println("3. Eliminar un usuario");
-            System.out.println("4. Salir");
-            System.out.print("Ingrese el número de la opción: ");
-
-            // Manejar entrada de usuario
-            opcion = obtenerOpcion(scanner);
+            limpiarPantalla();
+            opcion = obtenerOpcion();
 
             switch (opcion) {
                 case 1:
@@ -44,31 +36,33 @@ public class Bienvenida {
                     System.out.println("Saliendo del programa...");
                     break;
                 default:
-                    System.out.println("Opción inválida. Por favor, ingrese una opción válida.");
+                    JOptionPane.showMessageDialog(null, "Opción inválida. Por favor, ingrese una opción válida.");
             }
 
             if (opcion != 4) {
-                System.out.println("\nPresione Enter para continuar...");
-                scanner.nextLine(); // Consumir la nueva línea pendiente después de nextInt()
-                scanner.nextLine(); // Esperar a que el usuario presione Enter antes de continuar
+                JOptionPane.showMessageDialog(null, "\nPresione Enter para continuar...");
             }
         } while (opcion != 4);
-
-        scanner.close();
     }
 
     private void limpiarPantalla() {
-        // Imprimir 50 líneas en blanco para "limpiar" la pantalla
-        for (int i = 0; i < 50; i++) {
-            System.out.println();
-        }
+        // Este método ya no sería necesario con JOptionPane
     }
 
-    private int obtenerOpcion(Scanner scanner) {
-        while (!scanner.hasNextInt()) {
-            System.out.println("Entrada inválida. Por favor, ingrese un número.");
-            scanner.next(); // Consumir la entrada inválida
+    private int obtenerOpcion() {
+        String opcionStr = JOptionPane.showInputDialog(
+                "Bienvenido, ¿qué acción desea realizar?\n"
+                + "1. Mostrar lista de usuarios\n"
+                + "2. Registrar un nuevo usuario\n"
+                + "3. Eliminar un usuario\n"
+                + "4. Salir\n"
+                + "Ingrese el número de la opción: ");
+
+        try {
+            return Integer.parseInt(opcionStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Entrada inválida. Por favor, ingrese un número.");
+            return obtenerOpcion(); // Volver a intentar obtener la opción
         }
-        return scanner.nextInt();
     }
 }
