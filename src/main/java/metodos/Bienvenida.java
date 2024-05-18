@@ -45,10 +45,6 @@ public class Bienvenida {
         } while (opcion != 4);
     }
 
-    private void limpiarPantalla() {
-        // Este método ya no sería necesario con JOptionPane
-    }
-
     private int obtenerOpcion() {
         String opcionStr = JOptionPane.showInputDialog(
                 "Bienvenido, ¿qué acción desea realizar?\n"
