@@ -21,7 +21,6 @@ public class Usuario {
         listaUsuarios = new ArrayList<>();
     }
 
-    /* Metodo para Mostrarlo usuarios */
     public void mostrarListaUsuarios() {
         if (listaUsuarios.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay usuarios registrados.");
@@ -36,7 +35,6 @@ public class Usuario {
         JOptionPane.showMessageDialog(null, sb.toString());
     }
 
-    /* Metodo para Registrar los usuarios */
     public void registrarUsuario() {
         String nombres;
         String apellidos;
@@ -61,14 +59,10 @@ public class Usuario {
             listaUsuarios.add(nuevoUsuario);
 
             JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente. ID del usuario: " + id);
-            break; // Salir del bucle si se registró el usuario con éxito
-        } while (true); // Bucle infinito hasta que se registre un usuario válido
+            break;
+        } while (true);
     }
 
-    /*
-     * Metodo para Eliminar los usuarios por ID, que se recibe de metodo
-     * eliminarUsuario
-     */
     public void eliminarUsuarioPorID(int idEliminar) {
         Iterator<Usuarios> iterator = listaUsuarios.iterator();
         boolean encontrado = false;
@@ -97,10 +91,6 @@ public class Usuario {
         }
     }
 
-    /*
-     * Metodo para validar los campos sean llenados y no vacios y el email no este
-     * repetido
-     */
     private void validarDatos(String nombres, String apellidos, String email, String telefono) {
         if (nombres.isEmpty() || apellidos.isEmpty() || email.isEmpty() || telefono.isEmpty()) {
             throw new IllegalArgumentException("Favor completar todos los campos.");
@@ -111,8 +101,7 @@ public class Usuario {
         }
 
         if (existeCorreo(email)) {
-            throw new IllegalArgumentException(
-                    "El correo ingresado ya existe en la lista de usuarios. Por favor, ingrese uno distinto.");
+            throw new IllegalArgumentException("El correo ingresado ya existe en la lista de usuarios. Por favor, ingrese uno distinto.");
         }
     }
 
