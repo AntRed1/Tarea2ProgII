@@ -19,7 +19,6 @@ public class Bienvenida {
         int opcion;
 
         do {
-            limpiarPantalla();
             opcion = obtenerOpcion();
 
             switch (opcion) {
@@ -43,10 +42,6 @@ public class Bienvenida {
                 JOptionPane.showMessageDialog(null, "\nPresione Enter para continuar...");
             }
         } while (opcion != 4);
-    }
-
-    private void limpiarPantalla() {
-        // Este método ya no sería necesario con JOptionPane
     }
 
     private int obtenerOpcion() {
